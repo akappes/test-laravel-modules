@@ -9,7 +9,7 @@ use Modules\Fruit\Entities\Fruit;
 /**
  * Class FruitTransformer
  *
- * @package Modules\Product\Transformers
+ * @package Modules\Fruit\Transformers
  */
 class FruitTransformer extends TransformerAbstract
 {

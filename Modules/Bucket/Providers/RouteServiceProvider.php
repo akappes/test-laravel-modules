@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Fruit\Providers;
+namespace Modules\Bucket\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 /**
  * Class RouteServiceProvider
  *
- * @package Modules\Fruit\Providers
+ * @package Modules\Bucket\Providers
  */
 class RouteServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $moduleNamespace = 'Modules\Fruit\Http\Controllers';
+    protected $moduleNamespace = 'Modules\Bucket\Http\Controllers';
 
     /**
      * Called before routes are registered.
@@ -53,6 +53,6 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('api')
             ->middleware('api')
             ->namespace($this->moduleNamespace)
-            ->group(module_path('Fruit', '/Routes/api.php'));
+            ->group(module_path('Bucket', '/Routes/api.php'));
     }
 }
