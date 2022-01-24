@@ -1,0 +1,251 @@
+{
+	"info": {
+		"_postman_id": "14c625c1-050f-4d8f-811e-3ac5c9db6aa8",
+		"name": "Planne",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Frutas",
+			"item": [
+				{
+					"name": "Busca todas as frutas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/fruits",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"fruits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Altera uma fruta",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Fruta alterada\",\n    \"price\": \"{{$randomPrice}}\",\n    \"expiration_at\": \"2022-02-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/fruits/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"fruits",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove uma fruta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/fruits/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"fruits",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adiciona uma fruta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{$randomFullName}}\",\n    \"price\": \"{{$randomPrice}}\",\n    \"expiration_at\": \"2022-02-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/fruits",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"fruits"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Balde",
+			"item": [
+				{
+					"name": "Remover Fruta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bucket_id\": 3,\n    \"fruit_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/buckets/storage/remove",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"buckets",
+								"storage",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Fruta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"bucket_id\": 3,\n    \"fruit_id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/buckets/storange/add",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"buckets",
+								"storange",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove um balde",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/buckets/3",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"buckets",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar baldes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/api/buckets",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"buckets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adiciona um balde",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{$randomFullName}}\",\n    \"capacity\": \"3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/api/buckets",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"api",
+								"buckets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
