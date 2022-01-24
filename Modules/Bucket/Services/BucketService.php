@@ -9,6 +9,7 @@ use Modules\Bucket\Http\Requests\BucketRequest;
 use Modules\Bucket\Services\interfaces\BucketInterface;
 use Modules\Bucket\Services\interfaces\StorageInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use \Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 /**
  * Class BucketService
@@ -23,6 +24,19 @@ class BucketService implements BucketInterface, StorageInterface
         protected Bucket $model
     )
     {
+    }
+
+    /**
+     * @return LengthAwarePaginator|null
+     */
+    public function list(): LengthAwarePaginator|null
+    {
+        return $this->model
+            ->with('fruits')
+            ->withCount('fruits')
+            ->withSum('fruits', 'price')
+            ->orderByDesc('fruits_count')
+            ->paginate(10);
     }
 
     /**
