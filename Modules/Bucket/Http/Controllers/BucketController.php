@@ -3,10 +3,14 @@
 namespace Modules\Bucket\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use Modules\Bucket\Entities\Bucket;
+use Modules\Bucket\Exceptions\BucketContainFruitException;
 use Modules\Bucket\Http\Requests\BucketRequest;
+use Modules\Bucket\Services\interfaces\BucketInterface;
 use Modules\Bucket\Transformers\BucketTransformer;
 use Modules\Transformer\Traits\ApiResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class BucketController
@@ -16,10 +20,10 @@ class BucketController
     use ApiResponse;
 
     /**
-     * @param Bucket $model
+     * @param BucketInterface $bucketInterface
      */
     public function __construct(
-        protected Bucket $model
+        protected BucketInterface $bucketInterface
     )
     {
     }
@@ -30,7 +34,9 @@ class BucketController
      */
     public function store(BucketRequest $bucketRequest): JsonResponse
     {
-        $fruit = $this->model->create($bucketRequest->all());
+        $fruit = $this->bucketInterface->store(
+            request: $bucketRequest
+        );
         return $this->respondCreated(data: $this->transform($fruit, app(BucketTransformer::class)));
     }
 
@@ -40,11 +46,16 @@ class BucketController
      */
     public function delete(int $id): JsonResponse
     {
-        $fruit = $this->model->find($id);
-
-        if(!$fruit) return $this->failNotFound();
-
-        $fruit->delete();
+        try {
+            $this->bucketInterface->delete(bucketId: $id);
+        } catch (NotFoundHttpException $error) {
+            return $this->failNotFound();
+        } catch (BucketContainFruitException $error) {
+            return $this->failValidationError($error->getMessage());
+        } catch (\Exception $error) {
+            Log::error($error->getMessage(), $error->getTrace());
+            return $this->failServerError();
+        }
 
         return $this->respondDeleted();
     }
