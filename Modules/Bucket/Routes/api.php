@@ -5,6 +5,7 @@ use Modules\Bucket\Http\Controllers\BucketController;
 use \Modules\Bucket\Http\Controllers\StorageController;
 
 Route::prefix('buckets')->group(function () {
+    Route::get('/', [BucketController::class, 'index']);
     Route::post('/', [BucketController::class, 'store']);
     Route::delete('/{id}', [BucketController::class, 'delete']);
 

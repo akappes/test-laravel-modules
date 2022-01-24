@@ -29,15 +29,24 @@ class BucketController
     }
 
     /**
+     * @return JsonResponse
+     */
+    public function index(): JsonResponse
+    {
+        $buckets = $this->bucketInterface->list();
+        return $this->respond(data: $this->transform($buckets, app(BucketTransformer::class)));
+    }
+
+    /**
      * @param BucketRequest $bucketRequest
      * @return JsonResponse
      */
     public function store(BucketRequest $bucketRequest): JsonResponse
     {
-        $fruit = $this->bucketInterface->store(
+        $bucket = $this->bucketInterface->store(
             request: $bucketRequest
         );
-        return $this->respondCreated(data: $this->transform($fruit, app(BucketTransformer::class)));
+        return $this->respondCreated(data: $this->transform($bucket, app(BucketTransformer::class)));
     }
 
     /**
