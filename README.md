@@ -6,4 +6,4 @@ foo@bar:~$ ./vendor/bin/sail up
 foo@bar:~$ sail artisan migrate
 ```
 
-## Collections do postman disponivéis `postman_collection.json` 
+## Collections do postman disponível `postman_collection.json` 
